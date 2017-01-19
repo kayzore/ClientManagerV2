@@ -1,14 +1,29 @@
 cm_core_homepage:
     path:     /
     methods: [GET]
-    defaults: { _controller: CMCoreBundle:Default:index }
+    defaults: { _controller: CMCoreBundle:Core:index }
 
 cm_core_add_contact:
     path:     /Ajouter-un-contact
     methods: [GET]
-    defaults: { _controller: CMCoreBundle:Default:add }
+    defaults: { _controller: CMCoreBundle:Core:add }
+
+cm_core_save_add_contact:
+    path:     /Ajouter-un-contact
+    methods: [POST]
+    defaults: { _controller: CMCoreBundle:Core:saveAdd }
 
 cm_core_edit_contact:
     path:     /Modifier-un-contact/{idContact}
     methods: [GET]
-    defaults: { _controller: CMCoreBundle:Default:edit }
+    defaults: { _controller: CMCoreBundle:Core:edit }
+
+cm_core_save_edit_contact:
+    path:     /Modifier-un-contact/{idContact}
+    methods: [POST]
+    defaults: { _controller: CMCoreBundle:Core:saveEdit }
+
+cm_core_delete_contact:
+    path:     /Supprimer-un-contact/{idContact}
+    methods: [POST]
+    defaults: { _controller: CMCoreBundle:Core:delete }
