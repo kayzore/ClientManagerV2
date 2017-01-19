@@ -1,7 +1,7 @@
 /**
  * Created by Jerome Lelievre on 19/01/2017.
  */
-
+/*global $*/
 $(document).ready(function () {
     "use strict";
     $('.listContact .btnViewContact').click(function () {
