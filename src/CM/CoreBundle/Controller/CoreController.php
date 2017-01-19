@@ -19,17 +19,16 @@ class CoreController extends Controller
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
             return $this->render('CMCoreBundle:membres:ajouter.html.twig');
         }
-        $this->redirectToRoute('cm_core_homepage');
+        return $this->redirectToRoute('cm_core_homepage');
     }
 
     public function saveAddAction()
     {
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
-            return $this->render('CMCoreBundle:membres:ajouter.html.twig');
+            // Ajout en BDD d'un contact
         }
-        $this->redirectToRoute('cm_core_homepage');
-        // Ajout en BDD d'un contact puis redirection
-        $this->redirectToRoute('cm_core_homepage');
+        // puis redirection
+        return $this->redirectToRoute('cm_core_homepage');
     }
 
     public function editAction($idContact)
@@ -38,24 +37,24 @@ class CoreController extends Controller
             // Recuperation des informations du contact a modifier et affichage dans le formulaire
             return $this->render('CMCoreBundle:membres:modifier.html.twig');
         }
-        $this->redirectToRoute('cm_core_homepage');
+        return $this->redirectToRoute('cm_core_homepage');
     }
 
     public function saveEditAction($idContact)
     {
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
-            // Enregistrement des modifications sur un contact puis redirection
-            $this->redirectToRoute('cm_core_homepage');
+            // Enregistrement des modifications sur un contact
         }
-        $this->redirectToRoute('cm_core_homepage');
+        // puis redirection
+        return $this->redirectToRoute('cm_core_homepage');
     }
 
     public function deleteAction($idContact)
     {
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
-            // Suppression d'un contact puis redirection
-            $this->redirectToRoute('cm_core_homepage');
+            // Suppression d'un contact
         }
-        $this->redirectToRoute('cm_core_homepage');
+        // puis redirection
+        return $this->redirectToRoute('cm_core_homepage');
     }
 }
