@@ -11,7 +11,7 @@ class CoreController extends Controller
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
             return $this->render('CMCoreBundle:membres:accueil.html.twig');
         }
-        return $this->render('CMCoreBundle:visiteurs:accueil.html.twig');
+        return $this->redirectToRoute('fos_user_security_login');
     }
 
     public function addAction()
