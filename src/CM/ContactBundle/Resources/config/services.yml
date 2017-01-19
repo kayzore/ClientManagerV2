@@ -1,0 +1,4 @@
+services:
+#    cm_contact.example:
+#        class: CM\ContactBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

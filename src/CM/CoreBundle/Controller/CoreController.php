@@ -17,7 +17,8 @@ class CoreController extends Controller
     public function addAction()
     {
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
-            return $this->render('CMCoreBundle:membres:ajouter.html.twig');
+            $formAddContact = $this->forward('CMContactBundle:Contact:getForm', array('contact' => null));
+            return $this->render('CMCoreBundle:membres:ajouter.html.twig', array('formAddContact' => $formAddContact));
         }
         return $this->redirectToRoute('cm_core_homepage');
     }
