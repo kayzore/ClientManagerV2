@@ -1,0 +1,88 @@
+{% extends 'CMCoreBundle::layout.html.twig' %}
+
+{% block title %}
+    Accueil - {{ parent() }}
+{% endblock title %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/cmcore/js/previewContact.js') }}"></script>
+{% endblock javascripts %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <section>
+                <div class="col-xs-12 well">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <!-- Form Name -->
+                            <legend>Ajouter un contact</legend>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="inputNom">Nom</label>
+                                <div class="col-md-4">
+                                    <input id="inputNom" name="inputNom" type="text" placeholder="Nom du contact" class="form-control input-md" required="">
+                                </div>
+
+                                <label class="col-md-2 control-label" for="inputPrenom">Prenom</label>
+                                <div class="col-md-4">
+                                    <input id="inputPrenom" name="inputPrenom" type="text" placeholder="Prénom du contact" class="form-control input-md" required="">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="inputEmail">Email</label>
+                                <div class="col-md-4">
+                                    <input id="inputEmail" name="inputEmail" type="text" placeholder="Email du contact" class="form-control input-md" required="">
+                                </div>
+
+                                <label class="col-md-2 control-label" for="inputBirthdate">Date de naissance</label>
+                                <div class="col-md-4">
+                                    <input id="inputBirthdate" name="inputBirthdate" type="text" placeholder="Date de naissance du contact" class="form-control input-md">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="inputAdresse">Adresse</label>
+                                <div class="col-md-4">
+                                    <input id="inputAdresse" name="inputAdresse" type="text" placeholder="Adresse du contact" class="form-control input-md">
+                                </div>
+
+                                <label class="col-md-2 control-label" for="inputPostalCode">Code postal</label>
+                                <div class="col-md-4">
+                                    <input id="inputPostalCode" name="inputPostalCode" type="text" placeholder="Code postal du contact" class="form-control input-md">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="inputVille">Ville</label>
+                                <div class="col-md-4">
+                                    <input id="inputVille" name="inputVille" type="text" placeholder="Ville du contact" class="form-control input-md">
+                                </div>
+
+                                <label class="col-md-2 control-label" for="inputTelephone">Téléphone</label>
+                                <div class="col-md-4">
+                                    <input id="inputTelephone" name="inputTelephone" type="text" placeholder="Téléphone du contact" class="form-control input-md">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="inputWebSite">Site web</label>
+                                <div class="col-md-10">
+                                    <input id="inputWebSite" name="inputWebSite" type="text" placeholder="Site web du contact" class="form-control input-md">
+                                </div>
+                            </div>
+
+                            <button class="btn btn-success pull-right" type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock body %}
