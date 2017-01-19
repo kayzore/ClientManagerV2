@@ -7,3 +7,8 @@ cm_core_add_contact:
     path:     /Ajouter-un-contact
     methods: [GET]
     defaults: { _controller: CMCoreBundle:Default:add }
+
+cm_core_edit_contact:
+    path:     /Modifier-un-contact/{idContact}
+    methods: [GET]
+    defaults: { _controller: CMCoreBundle:Default:edit }
