@@ -40,7 +40,7 @@
                                 <div class="btn-group shortActionContact  btn-group-sm" role="group" aria-label="...">
                                     <button type="button" class="btn btn-default btnViewContact"><i class="fa fa-eye" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Voir</span></button>
                                     <button type="button" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Modifier</span></button>
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModalID"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
                                 </div>
                                 <div class="is_hidden">
                                     <ul>
@@ -51,6 +51,29 @@
                                         <li class="siteWebContact">jerome.lelievre.fr</li>
                                     </ul>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModalID" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <form method="post" action="{{ path('cm_core_delete_contact', {idContact: 1}) }}">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Confirmation de suppréssion</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Etes-vous sûr de vouloir supprimer la fiche contact de PRENOM NOM ?</p>
+                                        <div class="alert alert-danger" role="alert">
+                                            <p>Attention cette action est irréversible !</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                        <button type="submit" class="btn btn-danger">Confirmer</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
