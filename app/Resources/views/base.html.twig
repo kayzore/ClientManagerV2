@@ -2,10 +2,12 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('bundles/cmcore/css/bootstrap.min.css') }}"/>
+        <title>{% block title %}ClientManager{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('bundles/cmcore/css/bootstrap.min.css') }}" />
         {% block stylesheets %}{% endblock %}
-        <link rel="stylesheet" href="{{ asset('bundles/cmcore/css/bootstrap-theme.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('bundles/cmcore/css/bootstrap-theme.min.css') }}" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="{{ asset('bundles/cmcore/css/app.css') }}" />
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script src="{{ asset('bundles/cmcore/js/bootstrap.min.js') }}"></script>

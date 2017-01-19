@@ -1,0 +1,39 @@
+/* APP */
+body {
+    background: #ECECEC;
+    padding-top: 80px;
+}
+
+.strong {
+    font-weight: bold;
+}
+
+.is_hidden {
+    display: none;
+}
+
+.previewNames {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* PREVIEW CONTACT ZONE */
+.previewContact {
+    height: auto;
+    display: none;
+}
+
+.previewContact ul {
+    list-style-type: square;
+}
+
+/* BLOCK CONTACT */
+
+.avatarContact {
+    max-height: 120px;
+}
+
+.shortActionContact{
+    margin: 0 0 10px;
+}
