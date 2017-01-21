@@ -38,7 +38,7 @@ class CoreController extends Controller
                 $contact->setWebSite($formAddContact['webSite']->getData());
                 $em->persist($contact);
                 $em->flush();
-                return $this->redirect($this->generateUrl('cm_core_homepage'));
+                return $this->redirectToRoute('cm_core_homepage');
             }
             return $this->render('CMCoreBundle:membres:ajouter.html.twig', array('formAddContact' => $formAddContact->createView()));
         }
@@ -67,7 +67,7 @@ class CoreController extends Controller
                 $contact->setWebSite($formEditContact['webSite']->getData());
                 $em->persist($contact);
                 $em->flush();
-                return $this->redirect($this->generateUrl('cm_core_homepage'));
+                return $this->redirectToRoute('cm_core_homepage');
             }
             return $this->render('CMCoreBundle:membres:modifier.html.twig', array(
                 'formEditContact'   => $formEditContact->createView(),
@@ -81,8 +81,11 @@ class CoreController extends Controller
     {
         if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             // Suppression d'un contact
+            $em = $this->getDoctrine()->getManager();
+            $contact = $em->getRepository('CMContactBundle:Contact')->findOneBy(array('id' => $idContact));
+            $em->remove($contact);
+            $em->flush();
         }
-        // puis redirection
         return $this->redirectToRoute('cm_core_homepage');
     }
 }
