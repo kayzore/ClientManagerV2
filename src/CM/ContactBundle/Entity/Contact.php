@@ -36,6 +36,14 @@ class Contact
     /**
      * @var string
      *
+     * @ORM\Column(name="birthdate", type="datetime")
+     * @Assert\Date()
+     */
+    private $birthdate;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
@@ -46,6 +54,20 @@ class Contact
      * @ORM\Column(name="adresse", type="string", length=255)
      */
     private $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="postal", type="string", length=255)
+     */
+    private $postal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=255)
+     */
+    private $ville;
 
     /**
      * @var integer
@@ -121,6 +143,30 @@ class Contact
     }
 
     /**
+     * Set birthdate
+     *
+     * @param \DateTime $birthdate
+     *
+     * @return Contact
+     */
+    public function setBirthdate($birthdate)
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    /**
+     * Get birthdate
+     *
+     * @return string
+     */
+    public function getBirthdate()
+    {
+        return $this->birthdate;
+    }
+
+    /**
      * Set email
      *
      * @param string $email
@@ -164,6 +210,54 @@ class Contact
     public function getAdresse()
     {
         return $this->adresse;
+    }
+
+    /**
+     * Set postal
+     *
+     * @param string $postal
+     *
+     * @return Contact
+     */
+    public function setPostal($postal)
+    {
+        $this->postal = $postal;
+
+        return $this;
+    }
+
+    /**
+     * Get postal
+     *
+     * @return string
+     */
+    public function getPostal()
+    {
+        return $this->postal;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Contact
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
     }
 
     /**

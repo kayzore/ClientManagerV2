@@ -4,79 +4,92 @@
     Ajouter un contact - {{ parent() }}
 {% endblock title %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/cmcore/css/bootstrap-datepicker.min.css') }}" />
+{% endblock stylesheets %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/cmcore/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('bundles/cmcore/locales/bootstrap-datepicker.fr.min.js') }}"></script>
+    <script src="{{ asset('bundles/cmcore/js/addContact.js') }}"></script>
+{% endblock javascripts %}
+
 {% block body %}
     <div class="container">
         <div class="row">
             <section>
                 <div class="col-xs-12 well">
-                    <form class="form-horizontal">
+                    {{ form_start(formAddContact, {'attr': {'class': 'form-horizontal'}}) }}
                         <fieldset>
                             <!-- Form Name -->
                             <legend>Ajouter un contact</legend>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-2 control-label" for="inputNom">Nom</label>
+                                {{ form_label(formAddContact.nom, "Nom", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
                                 <div class="col-md-4">
-                                    <input id="inputNom" name="inputNom" type="text" placeholder="Nom du contact" class="form-control input-md" required="">
+                                    {{ form_widget(formAddContact.nom, {'attr': {'class': 'form-control input-md', 'placeholder': 'Nom du contact'}}) }}
                                 </div>
 
-                                <label class="col-md-2 control-label" for="inputPrenom">Prenom</label>
+                                {{ form_label(formAddContact.prenom, "Prénom", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
                                 <div class="col-md-4">
-                                    <input id="inputPrenom" name="inputPrenom" type="text" placeholder="Prénom du contact" class="form-control input-md" required="">
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="inputEmail">Email</label>
-                                <div class="col-md-4">
-                                    <input id="inputEmail" name="inputEmail" type="text" placeholder="Email du contact" class="form-control input-md" required="">
-                                </div>
-
-                                <label class="col-md-2 control-label" for="inputBirthdate">Date de naissance</label>
-                                <div class="col-md-4">
-                                    <input id="inputBirthdate" name="inputBirthdate" type="text" placeholder="Date de naissance du contact" class="form-control input-md">
+                                    {{ form_widget(formAddContact.prenom, {'attr': {'class': 'form-control input-md', 'placeholder': 'Prénom du contact'}}) }}
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-2 control-label" for="inputAdresse">Adresse</label>
+                                {{ form_label(formAddContact.email, "Email", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
                                 <div class="col-md-4">
-                                    <input id="inputAdresse" name="inputAdresse" type="text" placeholder="Adresse du contact" class="form-control input-md">
+                                    {{ form_widget(formAddContact.email, {'attr': {'class': 'form-control input-md', 'placeholder': 'Email du contact'}}) }}
                                 </div>
 
-                                <label class="col-md-2 control-label" for="inputPostalCode">Code postal</label>
+                                {{ form_label(formAddContact.birthdate, "Date de naissance", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
                                 <div class="col-md-4">
-                                    <input id="inputPostalCode" name="inputPostalCode" type="text" placeholder="Code postal du contact" class="form-control input-md">
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="inputVille">Ville</label>
-                                <div class="col-md-4">
-                                    <input id="inputVille" name="inputVille" type="text" placeholder="Ville du contact" class="form-control input-md">
-                                </div>
-
-                                <label class="col-md-2 control-label" for="inputTelephone">Téléphone</label>
-                                <div class="col-md-4">
-                                    <input id="inputTelephone" name="inputTelephone" type="text" placeholder="Téléphone du contact" class="form-control input-md">
+                                    {{ form_widget(formAddContact.birthdate, {'attr': {'class': 'form-control input-md datepicker', 'placeholder': 'Date de naissance du contact'}}) }}
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-2 control-label" for="inputWebSite">Site web</label>
+                                {{ form_label(formAddContact.adresse, "Adresse", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                                <div class="col-md-4">
+                                    {{ form_widget(formAddContact.adresse, {'attr': {'class': 'form-control input-md', 'placeholder': 'Adresse du contact'}}) }}
+                                </div>
+
+                                {{ form_label(formAddContact.postal, "Code postal", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                                <div class="col-md-4">
+                                    {{ form_widget(formAddContact.postal, {'attr': {'class': 'form-control input-md datepicker', 'placeholder': 'Code postal du contact'}}) }}
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                {{ form_label(formAddContact.ville, "Ville", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                                <div class="col-md-4">
+                                    {{ form_widget(formAddContact.ville, {'attr': {'class': 'form-control input-md', 'placeholder': 'Ville du contact'}}) }}
+                                </div>
+
+                                {{ form_label(formAddContact.telephone, "Code postal", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                                <div class="col-md-4">
+                                    {{ form_widget(formAddContact.telephone, {'attr': {'class': 'form-control input-md datepicker', 'placeholder': 'Téléhpone du contact'}}) }}
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+
+                                {{ form_label(formAddContact.webSite, "Site web", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
                                 <div class="col-md-10">
-                                    <input id="inputWebSite" name="inputWebSite" type="text" placeholder="Site web du contact" class="form-control input-md">
+                                    {{ form_widget(formAddContact.webSite, {'attr': {'class': 'form-control input-md datepicker', 'placeholder': 'Site web du contact'}}) }}
                                 </div>
                             </div>
 
                             <button class="btn btn-success pull-right" type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter</button>
+
+                            {{ form_rest(formAddContact) }}
                         </fieldset>
-                    </form>
+                    {{ form_end(formAddContact) }}
                 </div>
             </section>
         </div>
