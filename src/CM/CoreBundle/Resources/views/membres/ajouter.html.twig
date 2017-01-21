@@ -23,7 +23,7 @@
                         <fieldset>
                             <!-- Form Name -->
                             <legend>Ajouter un contact</legend>
-
+                            {{ form_errors(formAddContact) }}
                             <!-- Text input-->
                             <div class="form-group">
                                 {{ form_label(formAddContact.nom, "Nom", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
@@ -59,7 +59,7 @@
 
                                 {{ form_label(formAddContact.postal, "Code postal", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
                                 <div class="col-md-4">
-                                    {{ form_widget(formAddContact.postal, {'attr': {'class': 'form-control input-md datepicker', 'placeholder': 'Code postal du contact'}}) }}
+                                    {{ form_widget(formAddContact.postal, {'attr': {'class': 'form-control input-md', 'placeholder': 'Code postal du contact'}}) }}
                                 </div>
                             </div>
 
@@ -70,18 +70,17 @@
                                     {{ form_widget(formAddContact.ville, {'attr': {'class': 'form-control input-md', 'placeholder': 'Ville du contact'}}) }}
                                 </div>
 
-                                {{ form_label(formAddContact.telephone, "Code postal", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                                {{ form_label(formAddContact.telephone, "Téléphone", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
                                 <div class="col-md-4">
-                                    {{ form_widget(formAddContact.telephone, {'attr': {'class': 'form-control input-md datepicker', 'placeholder': 'Téléhpone du contact'}}) }}
+                                    {{ form_widget(formAddContact.telephone, {'attr': {'class': 'form-control input-md', 'placeholder': 'Téléhpone du contact'}}) }}
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-
                                 {{ form_label(formAddContact.webSite, "Site web", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
                                 <div class="col-md-10">
-                                    {{ form_widget(formAddContact.webSite, {'attr': {'class': 'form-control input-md datepicker', 'placeholder': 'Site web du contact'}}) }}
+                                    {{ form_widget(formAddContact.webSite, {'attr': {'class': 'form-control input-md', 'placeholder': 'Site web du contact'}}) }}
                                 </div>
                             </div>
 

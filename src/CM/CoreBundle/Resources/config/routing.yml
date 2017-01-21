@@ -5,13 +5,8 @@ cm_core_homepage:
 
 cm_core_add_contact:
     path:     /Ajouter-un-contact
-    methods: [GET]
+    methods: [GET, POST]
     defaults: { _controller: CMCoreBundle:Core:add }
-
-cm_core_save_add_contact:
-    path:     /Ajouter-un-contact
-    methods: [POST]
-    defaults: { _controller: CMCoreBundle:Core:saveAdd }
 
 cm_core_edit_contact:
     path:     /Modifier-un-contact/{idContact}

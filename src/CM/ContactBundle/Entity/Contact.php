@@ -37,7 +37,6 @@ class Contact
      * @var string
      *
      * @ORM\Column(name="birthdate", type="datetime")
-     * @Assert\Date()
      */
     private $birthdate;
 
