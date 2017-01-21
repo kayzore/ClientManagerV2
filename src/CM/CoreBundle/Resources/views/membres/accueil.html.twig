@@ -10,55 +10,59 @@
 
 {% block body %}
     <div class="container">
-        <div class="row">
-            <section class="previewContact" data-contactid="">
-                <article class="well">
-                    <div class="media">
-                        <div class="media-left media-top">
-                            <img src="" class="media-object img-circle avatarContact" alt="Avatar Contact">
+        {% set nbContact = 1 %}
+        {% for contact in listContact %}
+            {% if nbContact == 1 %}
+                <div class="row">
+                    <section class="previewContact" data-contactid="">
+                    <article class="well">
+                        <div class="media">
+                            <div class="media-left media-top">
+                                <img src="" class="media-object img-circle avatarContact" alt="Avatar Contact">
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading previewNamesContact"></h3>
+                                <ul>
+                                    <li class="previewBirthdateContact"><span class="strong">Date de naissance :</span> <span class="content"></span></li>
+                                    <li class="previewEmailContact"><span class="strong">Email :</span> <span class="content"></span></li>
+                                    <li class="previewAdresseContact"><span class="strong">Adresse :</span> <span class="content"></span></li>
+                                    <li class="previewTelephoneContact"><span class="strong">Téléphone :</span> <span class="content"></span></li>
+                                    <li class="previewSiteWebContact"><span class="strong">Site Web :</span> <span class="content"></span></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="media-body">
-                            <h3 class="media-heading previewNamesContact"></h3>
-                            <ul>
-                                <li class="previewBirthdateContact"><span class="strong">Date de naissance :</span> <span class="content"></span></li>
-                                <li class="previewEmailContact"><span class="strong">Email :</span> <span class="content"></span></li>
-                                <li class="previewAdresseContact"><span class="strong">Adresse :</span> <span class="content"></span></li>
-                                <li class="previewTelephoneContact"><span class="strong">Téléphone :</span> <span class="content"></span></li>
-                                <li class="previewSiteWebContact"><span class="strong">Site Web :</span> <span class="content"></span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
-            </section>
-            <section class="listContact">
-                <article>
-                    <div class="col-sm-3" id="contact1">
+                    </article>
+                </section>
+                    <section class="listContact">
+            {% endif %}
+                        <article>
+                    <div class="col-sm-3" id="contact{{ contact.id }}">
                         <div class="thumbnail">
                             <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="img-responsive img-circle avatarContact" alt="Avatar Contact">
                             <div class="caption text-center">
-                                <h3 class="previewNames">John Doe fgfdg azertyuiopqsdffg</h3>
+                                <h3 class="previewNames">{{ contact.prenom }} {{ contact.nom }}</h3>
                                 <div class="btn-group shortActionContact  btn-group-sm" role="group" aria-label="...">
                                     <button type="button" class="btn btn-default btnViewContact"><i class="fa fa-eye" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Voir</span></button>
                                     <button type="button" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Modifier</span></button>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModalID"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ contact.id }}"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
                                 </div>
                                 <div class="is_hidden">
                                     <ul>
-                                        <li class="birthdateContact">22/05/1945</li>
-                                        <li class="emailContact">fgdg@dfg.mail</li>
-                                        <li class="adresseContact">25 Rue machin false, 91255, alalalVille</li>
-                                        <li class="telephoneContact">01 54 12 25 78</li>
-                                        <li class="siteWebContact">jerome.lelievre.fr</li>
+                                        <li class="birthdateContact">{{ contact.birthdate|date('d/m/Y') }}</li>
+                                        <li class="emailContact">{{ contact.email }}</li>
+                                        <li class="adresseContact">{{ contact.adresse }}, {{ contact.postal }}, {{ contact.ville }}</li>
+                                        <li class="telephoneContact">{{ contact.telephone }}</li>
+                                        <li class="siteWebContact">{{ contact.webSite }}</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Modal -->
-                    <div class="modal fade" id="deleteModalID" tabindex="-1" role="dialog">
+                    <div class="modal fade" id="deleteModal{{ contact.id }}" tabindex="-1" role="dialog">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <form method="post" action="{{ path('cm_core_delete_contact', {idContact: 1}) }}">
+                                <form method="post" action="{{ path('cm_core_delete_contact', {idContact: contact.id}) }}">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <h4 class="modal-title" id="myModalLabel">Confirmation de suppréssion</h4>
@@ -78,198 +82,13 @@
                         </div>
                     </div>
                 </article>
-                <article>
-                    <div class="col-sm-3" id="contact2">
-                        <div class="thumbnail">
-                            <img src="http://www.w3schools.com/bootstrap/img_avatar2.png" class="img-responsive img-circle avatarContact" alt="Avatar Contact">
-                            <div class="caption text-center">
-                                <h3 class="previewNames">Alia Zxoski</h3>
-                                <div class="btn-group shortActionContact  btn-group-sm" role="group" aria-label="...">
-                                    <button type="button" class="btn btn-default btnViewContact"><i class="fa fa-eye" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Voir</span></button>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Modifier</span></button>
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
-                                </div>
-                                <div class="is_hidden">
-                                    <ul>
-                                        <li class="birthdateContact">19/01/1985</li>
-                                        <li class="emailContact">test@test.mail</li>
-                                        <li class="adresseContact">25 Rue machin true, 91255, BlablaVille</li>
-                                        <li class="telephoneContact">01 54 12 25 78</li>
-                                        <li class="siteWebContact">jerome.lelievre.fr</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article>
-                    <div class="col-sm-3" id="contact3">
-                        <div class="thumbnail">
-                            <img src="http://www.w3schools.com/bootstrap/img_avatar3.png" class="img-responsive img-circle avatarContact" alt="Avatar Contact">
-                            <div class="caption text-center">
-                                <h3 class="previewNames">Apa Bala</h3>
-                                <div class="btn-group shortActionContact  btn-group-sm" role="group" aria-label="...">
-                                    <button type="button" class="btn btn-default btnViewContact"><i class="fa fa-eye" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Voir</span></button>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Modifier</span></button>
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
-                                </div>
-                                <div class="is_hidden">
-                                    <ul>
-                                        <li class="birthdateContact">19/01/1985</li>
-                                        <li class="emailContact">test@test.mail</li>
-                                        <li class="adresseContact">25 Rue machin true, 91255, BlablaVille</li>
-                                        <li class="telephoneContact">01 54 12 25 78</li>
-                                        <li class="siteWebContact">jerome.lelievre.fr</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article>
-                    <div class="col-sm-3" id="contact4">
-                        <div class="thumbnail">
-                            <img src="http://www.w3schools.com/bootstrap/img_avatar4.png" class="img-responsive img-circle avatarContact" alt="Avatar Contact">
-                            <div class="caption text-center">
-                                <h3 class="previewNames">Yaya Yele</h3>
-                                <div class="btn-group shortActionContact  btn-group-sm" role="group" aria-label="...">
-                                    <button type="button" class="btn btn-default btnViewContact"><i class="fa fa-eye" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Voir</span></button>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Modifier</span></button>
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
-                                </div>
-                                <div class="is_hidden">
-                                    <ul>
-                                        <li class="birthdateContact">19/01/1985</li>
-                                        <li class="emailContact">test@test.mail</li>
-                                        <li class="adresseContact">25 Rue machin true, 91255, BlablaVille</li>
-                                        <li class="telephoneContact">01 54 12 25 78</li>
-                                        <li class="siteWebContact">jerome.lelievre.fr</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </section>
-        </div>
-        <div class="row">
-            <section class="previewContact" data-contactid="">
-                <article class="well">
-                    <div class="media">
-                        <div class="media-left media-top">
-                            <img src="" class="media-object img-circle avatarContact" alt="Avatar Contact">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading previewNamesContact"></h3>
-                            <ul>
-                                <li class="previewBirthdateContact"><span class="strong">Date de naissance :</span> <span class="content"></span></li>
-                                <li class="previewEmailContact"><span class="strong">Email :</span> <span class="content"></span></li>
-                                <li class="previewAdresseContact"><span class="strong">Adresse :</span> <span class="content"></span></li>
-                                <li class="previewTelephoneContact"><span class="strong">Téléphone :</span> <span class="content"></span></li>
-                                <li class="previewSiteWebContact"><span class="strong">Site Web :</span> <span class="content"></span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
-            </section>
-            <section class="listContact">
-                <article>
-                    <div class="col-sm-3" id="contact1">
-                        <div class="thumbnail">
-                            <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="img-responsive img-circle avatarContact" alt="Avatar Contact">
-                            <div class="caption text-center">
-                                <h3>John Doe</h3>
-                                <div class="btn-group shortActionContact  btn-group-sm" role="group" aria-label="...">
-                                    <button type="button" class="btn btn-default btnViewContact"><i class="fa fa-eye" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Voir</span></button>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Modifier</span></button>
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
-                                </div>
-                                <div class="is_hidden">
-                                    <ul>
-                                        <li class="birthdateContact">22/05/1945</li>
-                                        <li class="emailContact">fgdg@dfg.mail</li>
-                                        <li class="adresseContact">25 Rue machin false, 91255, alalalVille</li>
-                                        <li class="telephoneContact">01 54 12 25 78</li>
-                                        <li class="siteWebContact">jerome.lelievre.fr</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article>
-                    <div class="col-sm-3" id="contact2">
-                        <div class="thumbnail">
-                            <img src="http://www.w3schools.com/bootstrap/img_avatar2.png" class="img-responsive img-circle avatarContact" alt="Avatar Contact">
-                            <div class="caption text-center">
-                                <h3>Alia Zxoski</h3>
-                                <div class="btn-group shortActionContact  btn-group-sm" role="group" aria-label="...">
-                                    <button type="button" class="btn btn-default btnViewContact"><i class="fa fa-eye" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Voir</span></button>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Modifier</span></button>
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
-                                </div>
-                                <div class="is_hidden">
-                                    <ul>
-                                        <li class="birthdateContact">19/01/1985</li>
-                                        <li class="emailContact">test@test.mail</li>
-                                        <li class="adresseContact">25 Rue machin true, 91255, BlablaVille</li>
-                                        <li class="telephoneContact">01 54 12 25 78</li>
-                                        <li class="siteWebContact">jerome.lelievre.fr</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article>
-                    <div class="col-sm-3" id="contact3">
-                        <div class="thumbnail">
-                            <img src="http://www.w3schools.com/bootstrap/img_avatar3.png" class="img-responsive img-circle avatarContact" alt="Avatar Contact">
-                            <div class="caption text-center">
-                                <h3>Apa Bala</h3>
-                                <div class="btn-group shortActionContact  btn-group-sm" role="group" aria-label="...">
-                                    <button type="button" class="btn btn-default btnViewContact"><i class="fa fa-eye" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Voir</span></button>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Modifier</span></button>
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
-                                </div>
-                                <div class="is_hidden">
-                                    <ul>
-                                        <li class="birthdateContact">19/01/1985</li>
-                                        <li class="emailContact">test@test.mail</li>
-                                        <li class="adresseContact">25 Rue machin true, 91255, BlablaVille</li>
-                                        <li class="telephoneContact">01 54 12 25 78</li>
-                                        <li class="siteWebContact">jerome.lelievre.fr</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article>
-                    <div class="col-sm-3" id="contact4">
-                        <div class="thumbnail">
-                            <img src="http://www.w3schools.com/bootstrap/img_avatar4.png" class="img-responsive img-circle avatarContact" alt="Avatar Contact">
-                            <div class="caption text-center">
-                                <h3>Yaya Yele</h3>
-                                <div class="btn-group shortActionContact  btn-group-sm" role="group" aria-label="...">
-                                    <button type="button" class="btn btn-default btnViewContact"><i class="fa fa-eye" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Voir</span></button>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Modifier</span></button>
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
-                                </div>
-                                <div class="is_hidden">
-                                    <ul>
-                                        <li class="birthdateContact">19/01/1985</li>
-                                        <li class="emailContact">test@test.mail</li>
-                                        <li class="adresseContact">25 Rue machin true, 91255, BlablaVille</li>
-                                        <li class="telephoneContact">01 54 12 25 78</li>
-                                        <li class="siteWebContact">jerome.lelievre.fr</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </section>
-        </div>
+            {% if nbContact == 4 or listContact|length == nbContact %}
+                    </section>
+                </div>
+                {% set nbContact = 1 %}
+            {% else %}
+                {% set nbContact = nbContact + 1 %}
+            {% endif %}
+        {% endfor %}
     </div>
 {% endblock body %}

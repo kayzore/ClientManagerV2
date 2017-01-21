@@ -12,7 +12,9 @@ class CoreController extends Controller
     public function indexAction()
     {
         if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-            return $this->render('CMCoreBundle:membres:accueil.html.twig');
+            $em = $this->getDoctrine()->getManager();
+            $listContact = $em->getRepository('CMContactBundle:Contact')->findAll();
+            return $this->render('CMCoreBundle:membres:accueil.html.twig', array('listContact' => $listContact));
         }
         return $this->redirectToRoute('fos_user_security_login');
     }
