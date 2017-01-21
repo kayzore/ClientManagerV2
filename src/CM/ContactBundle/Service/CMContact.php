@@ -17,7 +17,7 @@ class CMContact
         $this->em = $em;
     }
 
-    public function addContact(Contact $contact, FormBuilder $formAddContact) {
+    public function addContact(Contact $contact, $formAddContact) {
         $contact->setNom($formAddContact['nom']->getData());
         $contact->setPrenom($formAddContact['prenom']->getData());
         $contact->setEmail($formAddContact['email']->getData());
@@ -31,7 +31,7 @@ class CMContact
         $this->em->flush();
     }
 
-    public function editContact(Contact $contact, FormBuilder $formEditContact) {
+    public function editContact(Contact $contact, $formEditContact) {
         $contact->setNom($formEditContact['nom']->getData());
         $contact->setPrenom($formEditContact['prenom']->getData());
         $contact->setEmail($formEditContact['email']->getData());
