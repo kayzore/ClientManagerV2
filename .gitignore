@@ -38,3 +38,4 @@
 **/Entity/*~
 *.bat
 Save/
+/web/config.php
