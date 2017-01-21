@@ -1,5 +1,6 @@
 {
     "name": "kayzore/symfony",
+    "description": "ClientManager est un gestionnaire de contact",
     "license": "proprietary",
     "type": "project",
     "autoload": {
