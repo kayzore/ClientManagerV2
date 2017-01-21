@@ -25,19 +25,8 @@ class CoreController extends Controller
             $contact = new Contact();
             $formAddContact = $this->createForm(new ContactType(), $contact);
             if ($formAddContact->handleRequest($request)->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $contact->setNom($formAddContact['nom']->getData());
-                $contact->setPrenom($formAddContact['prenom']->getData());
-                $contact->setEmail($formAddContact['email']->getData());
-                $birthdate = \DateTime::createFromFormat('d/m/Y', $formAddContact['birthdate']->getData());
-                $contact->setBirthdate($birthdate);
-                $contact->setAdresse($formAddContact['adresse']->getData());
-                $contact->setPostal($formAddContact['postal']->getData());
-                $contact->setVille($formAddContact['ville']->getData());
-                $contact->setTelephone($formAddContact['telephone']->getData());
-                $contact->setWebSite($formAddContact['webSite']->getData());
-                $em->persist($contact);
-                $em->flush();
+                $contactService = $this->container->get('cm_contact.contact');
+                $contactService->addContact($contact, $formAddContact);
                 return $this->redirectToRoute('cm_core_homepage');
             }
             return $this->render('CMCoreBundle:membres:ajouter.html.twig', array('formAddContact' => $formAddContact->createView()));
@@ -54,19 +43,8 @@ class CoreController extends Controller
             $contactNew = new Contact();
             $formEditContact = $this->createForm(new ContactType(), $contactNew);
             if ($formEditContact->handleRequest($request)->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $contact->setNom($formEditContact['nom']->getData());
-                $contact->setPrenom($formEditContact['prenom']->getData());
-                $contact->setEmail($formEditContact['email']->getData());
-                $birthdate = \DateTime::createFromFormat('d/m/Y', $formEditContact['birthdate']->getData());
-                $contact->setBirthdate($birthdate);
-                $contact->setAdresse($formEditContact['adresse']->getData());
-                $contact->setPostal($formEditContact['postal']->getData());
-                $contact->setVille($formEditContact['ville']->getData());
-                $contact->setTelephone($formEditContact['telephone']->getData());
-                $contact->setWebSite($formEditContact['webSite']->getData());
-                $em->persist($contact);
-                $em->flush();
+                $contactService = $this->container->get('cm_contact.contact');
+                $contactService->editContact($contact, $formEditContact);
                 return $this->redirectToRoute('cm_core_homepage');
             }
             return $this->render('CMCoreBundle:membres:modifier.html.twig', array(
