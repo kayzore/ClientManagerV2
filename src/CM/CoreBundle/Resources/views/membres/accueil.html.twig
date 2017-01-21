@@ -43,7 +43,7 @@
                                 <h3 class="previewNames">{{ contact.prenom }} {{ contact.nom }}</h3>
                                 <div class="btn-group shortActionContact  btn-group-sm" role="group" aria-label="...">
                                     <button type="button" class="btn btn-default btnViewContact"><i class="fa fa-eye" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Voir</span></button>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Modifier</span></button>
+                                    <a href="{{ path('cm_core_edit_contact', {'idContact': contact.id}) }}" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Modifier</span></a>
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ contact.id }}"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
                                 </div>
                                 <div class="is_hidden">

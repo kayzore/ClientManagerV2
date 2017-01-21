@@ -4,7 +4,14 @@
     Modifier un contact - {{ parent() }}
 {% endblock title %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/cmcore/css/bootstrap-datepicker.min.css') }}" />
+{% endblock stylesheets %}
+
 {% block javascripts %}
+    <script src="{{ asset('bundles/cmcore/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('bundles/cmcore/locales/bootstrap-datepicker.fr.min.js') }}"></script>
+    <script src="{{ asset('bundles/cmcore/js/addContact.js') }}"></script>
 {% endblock javascripts %}
 
 {% block body %}
@@ -12,74 +19,76 @@
         <div class="row">
             <section>
                 <div class="col-xs-12 well">
-                    <form class="form-horizontal">
-                        <fieldset>
-                            <!-- Form Name -->
-                            <legend>Ajouter un contact</legend>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="inputNom">Nom</label>
-                                <div class="col-md-4">
-                                    <input id="inputNom" name="inputNom" type="text" placeholder="Nom du contact" class="form-control input-md" required="">
-                                </div>
-
-                                <label class="col-md-2 control-label" for="inputPrenom">Prenom</label>
-                                <div class="col-md-4">
-                                    <input id="inputPrenom" name="inputPrenom" type="text" placeholder="Prénom du contact" class="form-control input-md" required="">
-                                </div>
+                    {{ form_start(formEditContact, {'attr': {'class': 'form-horizontal'}}) }}
+                    <fieldset>
+                        <!-- Form Name -->
+                        <legend>Ajouter un contact</legend>
+                        {{ form_errors(formEditContact) }}
+                        <!-- Text input-->
+                        <div class="form-group">
+                            {{ form_label(formEditContact.nom, "Nom", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                            <div class="col-md-4">
+                                {{ form_widget(formEditContact.nom, {'attr': {'class': 'form-control input-md', 'placeholder': 'Nom du contact', 'value': contact.nom}}) }}
                             </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="inputEmail">Email</label>
-                                <div class="col-md-4">
-                                    <input id="inputEmail" name="inputEmail" type="text" placeholder="Email du contact" class="form-control input-md" required="">
-                                </div>
+                            {{ form_label(formEditContact.prenom, "Prénom", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                            <div class="col-md-4">
+                                {{ form_widget(formEditContact.prenom, {'attr': {'class': 'form-control input-md', 'placeholder': 'Prénom du contact', 'value': contact.prenom}}) }}
+                            </div>
+                        </div>
 
-                                <label class="col-md-2 control-label" for="inputBirthdate">Date de naissance</label>
-                                <div class="col-md-4">
-                                    <input id="inputBirthdate" name="inputBirthdate" type="text" placeholder="Date de naissance du contact" class="form-control input-md">
-                                </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            {{ form_label(formEditContact.email, "Email", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                            <div class="col-md-4">
+                                {{ form_widget(formEditContact.email, {'attr': {'class': 'form-control input-md', 'placeholder': 'Email du contact', 'value': contact.email}}) }}
                             </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="inputAdresse">Adresse</label>
-                                <div class="col-md-4">
-                                    <input id="inputAdresse" name="inputAdresse" type="text" placeholder="Adresse du contact" class="form-control input-md">
-                                </div>
+                            {{ form_label(formEditContact.birthdate, "Date de naissance", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                            <div class="col-md-4">
+                                {{ form_widget(formEditContact.birthdate, {'attr': {'class': 'form-control input-md datepicker', 'placeholder': 'Date de naissance du contact', 'value': contact.birthdate|date('d/m/Y')}}) }}
+                            </div>
+                        </div>
 
-                                <label class="col-md-2 control-label" for="inputPostalCode">Code postal</label>
-                                <div class="col-md-4">
-                                    <input id="inputPostalCode" name="inputPostalCode" type="text" placeholder="Code postal du contact" class="form-control input-md">
-                                </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            {{ form_label(formEditContact.adresse, "Adresse", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                            <div class="col-md-4">
+                                {{ form_widget(formEditContact.adresse, {'attr': {'class': 'form-control input-md', 'placeholder': 'Adresse du contact', 'value': contact.adresse}}) }}
                             </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="inputVille">Ville</label>
-                                <div class="col-md-4">
-                                    <input id="inputVille" name="inputVille" type="text" placeholder="Ville du contact" class="form-control input-md">
-                                </div>
+                            {{ form_label(formEditContact.postal, "Code postal", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                            <div class="col-md-4">
+                                {{ form_widget(formEditContact.postal, {'attr': {'class': 'form-control input-md', 'placeholder': 'Code postal du contact', 'value': contact.postal}}) }}
+                            </div>
+                        </div>
 
-                                <label class="col-md-2 control-label" for="inputTelephone">Téléphone</label>
-                                <div class="col-md-4">
-                                    <input id="inputTelephone" name="inputTelephone" type="text" placeholder="Téléphone du contact" class="form-control input-md">
-                                </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            {{ form_label(formEditContact.ville, "Ville", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                            <div class="col-md-4">
+                                {{ form_widget(formEditContact.ville, {'attr': {'class': 'form-control input-md', 'placeholder': 'Ville du contact', 'value': contact.ville}}) }}
                             </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="inputWebSite">Site web</label>
-                                <div class="col-md-10">
-                                    <input id="inputWebSite" name="inputWebSite" type="text" placeholder="Site web du contact" class="form-control input-md">
-                                </div>
+                            {{ form_label(formEditContact.telephone, "Téléphone", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                            <div class="col-md-4">
+                                {{ form_widget(formEditContact.telephone, {'attr': {'class': 'form-control input-md', 'placeholder': 'Téléhpone du contact', 'value': contact.telephone}}) }}
                             </div>
+                        </div>
 
-                            <button class="btn btn-success pull-right" type="submit"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter</button>
-                        </fieldset>
-                    </form>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            {{ form_label(formEditContact.webSite, "Site web", {'label_attr': {'class': 'col-md-2 control-label'}} ) }}
+                            <div class="col-md-10">
+                                {{ form_widget(formEditContact.webSite, {'attr': {'class': 'form-control input-md', 'placeholder': 'Site web du contact', 'value': contact.webSite}}) }}
+                            </div>
+                        </div>
+
+                        <button class="btn btn-success pull-right" type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modifier</button>
+
+                        {{ form_rest(formEditContact) }}
+                    </fieldset>
+                    {{ form_end(formEditContact) }}
                 </div>
             </section>
         </div>

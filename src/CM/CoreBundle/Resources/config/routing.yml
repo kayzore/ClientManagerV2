@@ -10,13 +10,8 @@ cm_core_add_contact:
 
 cm_core_edit_contact:
     path:     /Modifier-un-contact/{idContact}
-    methods: [GET]
+    methods: [GET, POST]
     defaults: { _controller: CMCoreBundle:Core:edit }
-
-cm_core_save_edit_contact:
-    path:     /Modifier-un-contact/{idContact}
-    methods: [POST]
-    defaults: { _controller: CMCoreBundle:Core:saveEdit }
 
 cm_core_delete_contact:
     path:     /Supprimer-un-contact/{idContact}
