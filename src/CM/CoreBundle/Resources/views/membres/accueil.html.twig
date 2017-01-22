@@ -36,52 +36,52 @@
                     <section class="listContact">
             {% endif %}
                         <article>
-                    <div class="col-sm-3" id="contact{{ contact.id }}">
-                        <div class="thumbnail">
-                            <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="img-responsive img-circle avatarContact" alt="Avatar Contact">
-                            <div class="caption text-center">
-                                <h3 class="previewNames">{{ contact.prenom }} {{ contact.nom }}</h3>
-                                <div class="btn-group shortActionContact  btn-group-sm" role="group" aria-label="...">
-                                    <button type="button" class="btn btn-default btnViewContact"><i class="fa fa-eye" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Voir</span></button>
-                                    <a href="{{ path('cm_core_edit_contact', {'idContact': contact.id}) }}" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Modifier</span></a>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ contact.id }}"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
-                                </div>
-                                <div class="is_hidden">
-                                    <ul>
-                                        <li class="birthdateContact">{{ contact.birthdate|date('d/m/Y') }}</li>
-                                        <li class="emailContact">{{ contact.email }}</li>
-                                        <li class="adresseContact">{{ contact.adresse }}, {{ contact.postal }}, {{ contact.ville }}</li>
-                                        <li class="telephoneContact">{{ contact.telephone }}</li>
-                                        <li class="siteWebContact">{{ contact.webSite }}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal -->
-                    <div class="modal fade" id="deleteModal{{ contact.id }}" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <form method="post" action="{{ path('cm_core_delete_contact', {idContact: contact.id}) }}">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Confirmation de suppréssion</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Etes-vous sûr de vouloir supprimer la fiche contact de PRENOM NOM ?</p>
-                                        <div class="alert alert-danger" role="alert">
-                                            <p>Attention cette action est irréversible !</p>
+                            <div class="col-sm-3" id="contact{{ contact.id }}">
+                                <div class="thumbnail">
+                                    <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="img-responsive img-circle avatarContact" alt="Avatar Contact">
+                                    <div class="caption text-center">
+                                        <h3 class="previewNames">{{ contact.prenom }} {{ contact.nom }}</h3>
+                                        <div class="btn-group shortActionContact  btn-group-sm" role="group" aria-label="...">
+                                            <button type="button" class="btn btn-default btnViewContact"><i class="fa fa-eye" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Voir</span></button>
+                                            <a href="{{ path('cm_core_edit_contact', {'idContact': contact.id}) }}" class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Modifier</span></a>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ contact.id }}"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm hidden-md"> Supprimer</span></button>
+                                        </div>
+                                        <div class="is_hidden">
+                                            <ul>
+                                                <li class="birthdateContact">{{ contact.birthdate|date('d/m/Y') }}</li>
+                                                <li class="emailContact">{{ contact.email }}</li>
+                                                <li class="adresseContact">{{ contact.adresse }}, {{ contact.postal }}, {{ contact.ville }}</li>
+                                                <li class="telephoneContact">{{ contact.telephone }}</li>
+                                                <li class="siteWebContact">{{ contact.webSite }}</li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                                        <button type="submit" class="btn btn-danger">Confirmer</button>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </article>
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteModal{{ contact.id }}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <form method="post" action="{{ path('cm_core_delete_contact', {idContact: contact.id}) }}">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">Confirmation de suppréssion</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Etes-vous sûr de vouloir supprimer la fiche contact de PRENOM NOM ?</p>
+                                                <div class="alert alert-danger" role="alert">
+                                                    <p>Attention cette action est irréversible !</p>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                <button type="submit" class="btn btn-danger">Confirmer</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
             {% if nbContact == 4 or listContact|length == nbContact %}
                     </section>
                 </div>
